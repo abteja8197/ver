@@ -1,0 +1,193 @@
+const puppeteer = require('puppeteer');
+const modbus = require('modbus-serial');
+
+const pollInterval = 600000;
+
+setInterval(async () => {
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        // scrape WeatherTrak data
+        await page.goto('http://www.solarvu.net/green/solarvu/performWeatherTrak.php?ac=101948&wt=1', { waitUntil: 'load' });
+        const weatherTexts = await page.$$eval('font.blueFont > b', elements => elements.map(item => item.textContent));
+        console.log(`${(new Date(Date.now())).toTimeString()} - weatherTexts: ${weatherTexts}`);
+
+        // [solar irradiance (W/m^2), ambient temperature (c), panel temperature (c)]
+        const weatherValues = [1, 5, 7].map(i => weatherTexts[i]).map(item => item && item.replace(/,/g, '')).map(parseFloat);
+        console.log(`${(new Date(Date.now())).toTimeString()} - weatherValues: ${weatherValues}`);
+
+        // scrape inverter data (Device ID: 1, 2, 3, 4)
+        await page.goto('http://www.solarvu.net/green/solarvu/performSInverter.php?ac=101948', { waitUntil: 'load' });
+        const inverterTexts = await page.$$eval('font.blueFont > b', elements => elements.map(item => item.textContent));
+        console.log(`${(new Date(Date.now())).toTimeString()} - inverterTexts: ${inverterTexts}`);
+        const inverterValues = inverterTexts.map(item => item && item.replace(/,/g, ''))
+            .map(item => {
+                if (/^\d+\.?\d* k/.test(item)) { // if unit is in kilo
+                    return parseFloat(item) * 1000;
+                } else {
+                    return parseFloat(item) || 0; // convert N/A to 0
+                }
+            });
+        console.log(`${(new Date(Date.now())).toTimeString()} - inverterValues: ${inverterValues}`);
+
+        // array of DC Power input for each inverter
+        const predictedPower = calculatePredictedPowerInput(weatherValues);
+        // parse the array into 4 inverter objects
+        const inverter1 = convertArrayToObject(inverterValues.slice(0, 23), predictedPower[0]);
+        const inverter2 = convertArrayToObject(inverterValues.slice(23, 46), predictedPower[1]);
+        const inverter3 = convertArrayToObject(inverterValues.slice(46, 69), predictedPower[2]);
+        const inverter4 = convertArrayToObject(inverterValues.slice(69, 92), predictedPower[3]);
+
+        const ACOutputValues = predictedPower[4];
+
+        console.log("ACOutput Values After Calculation", ACOutputValues[0], ACOutputValues[1], ACOutputValues[2], ACOutputValues[3]);
+        // write data to the modbus slave
+        writeToModbusTCP(weatherValues, [inverter1, inverter2, inverter3, inverter4]);
+
+        await browser.close();
+    } catch (e) {
+        console.error(`${(new Date(Date.now())).toTimeString()} - puppeteer error: ${e}`);
+    }
+}, pollInterval);
+
+async function writeToModbusTCP(weatherValues, inverters) {
+    console.log(`${(new Date(Date.now())).toTimeString()} - writeToModbusTCP() start`);
+    let promises = [];
+    let client = new modbus();
+    await client.connectTCP("127.0.0.1", { port: 3000 }).catch(console.error);
+    await client.setID(1);
+
+    weatherValues = weatherValues.flatMap(convertToScaledInt).map(twosComplement16Bit);
+    // write WeatherTrak Values starting at register 40063
+    promises.push(client.writeRegisters(40063, weatherValues).catch(console.error));
+
+    // write inverters values
+    for (let i = 0; i < inverters.length; i++) {
+        await client.setID(i + 1);
+
+        for (let j in inverters[i]) {
+            let prop = inverters[i][j];
+            promises.push(client.writeRegisters(prop.addr, prop.val).catch(console.error));
+        }
+
+        await Promise.all(promises).then(() => console.log(`${(new Date(Date.now())).toTimeString()} - Device${i + 1} write success`));
+    }
+
+    await client.close();
+    console.log(`${(new Date(Date.now())).toTimeString()} - writeToModbusTCP() end`);
+}
+
+function convertArrayToObject(inverterValues, predictedPower) {
+    let arr = [...inverterValues, predictedPower, inverterValues[1] / predictedPower];
+
+    arr = arr.map((element, index) => {
+        if (index == 1 || index == 4 || index == 23) {
+            return convertPowerToScaledInt(element);
+        } else if (index == 24) {
+            return [parseInt(element * 100), -2];
+        } else {
+            return convertToScaledInt(element);
+        }
+    })
+        .flat()
+        .map(twosComplement16Bit);
+
+    return {
+        // field name: {address (base 0), [value, scale]}
+        // related fields share common scale, so the scale will be missing
+        DCInputPower: { addr: 40100, val: [arr[2], arr[3]] },
+        DCInputVoltage: { addr: 40098, val: [arr[4], arr[5]] },
+        DCInputCurrent: { addr: 40096, val: [arr[6], arr[7]] },
+        ACOutputPower: { addr: 40083, val: [arr[8], arr[9]] },
+        //ACOutputVoltage: { addr: , val: [arr[10], arr[11]]},
+        ACOutputCurrent: { addr: 40071, val: [arr[12]] },
+        //ACOutputEfficiency: { addr: , val: [arr[14], arr[15]]},
+        ACOutputFrequency: { addr: 40085, val: [arr[16], arr[17]] },
+        PhaseCurrentA: { addr: 40072, val: [arr[18]] },
+        PhaseCurrentB: { addr: 40073, val: [arr[20]] },
+        PhaseCurrentC: { addr: 40074, val: [arr[22], arr[23]] },
+        PhaseVoltageAB: { addr: 40076, val: [arr[24]] },
+        PhaseVoltageBC: { addr: 40077, val: [arr[26]] },
+        PhaseVoltageCA: { addr: 40078, val: [arr[28]] },
+        PhaseVoltageAN: { addr: 40079, val: [arr[30]] },
+        PhaseVoltageBN: { addr: 40080, val: [arr[32]] },
+        PhaseVoltageCN: { addr: 40081, val: [arr[34], arr[35]] },
+        // non-spec value
+        PredictedDCPower: { addr: 0, val: [arr[46], arr[47]] },
+        DCPowerEfficiency: { addr: 2, val: [arr[48], arr[49]] }
+    };
+}
+
+// eg. 3.14 => [31, -1]
+// only uses up to 1 decimal point
+function convertToScaledInt(value) {
+    return [parseInt(value * 10), -1];
+}
+
+// 32700.000000000004 => [3270, 1]
+// truncates at 10W to prevent overflower on INT16
+function convertPowerToScaledInt(value) {
+    return [parseInt(value / 10), 1];
+}
+
+function twosComplement16Bit(signedInt) {
+    return (signedInt < 0 ? signedInt + 65536 : signedInt);
+}
+
+function calculatePredictedPowerInput(weatherValues) {
+    // these are all predicted values
+    const inputCurrent = 9.43 * weatherValues[0] / 1000 * 6;
+    const moduleVoltage = 39.8 + (39.8 * -0.29 / 100 * (weatherValues[2] - 25));
+
+    //Voltage per String = (Voltage per module * (Module Qty/2)) – (Voltage per module * (Module Qty/2)) * Voltage Drop %)
+
+    const inv1str1Voltage = moduleVoltage * 18 - (moduleVoltage * 18 * 0.61 / 100);
+    const inv1str2Voltage = moduleVoltage * 18 - (moduleVoltage * 18 * 0.91 / 100);
+    const inv1str3Voltage = moduleVoltage * 18 - (moduleVoltage * 18 * 0.96 / 100);
+
+    const inv2str1Voltage = moduleVoltage * 19 - (moduleVoltage * 19 * 1.09 / 100);
+    const inv2str2Voltage = moduleVoltage * 16 - (moduleVoltage * 16 * 0.68 / 100);
+    const inv2str3Voltage = moduleVoltage * 19 - (moduleVoltage * 19 * 0.74 / 100);
+
+    const inv3str1Voltage = moduleVoltage * 19 - (moduleVoltage * 19 * 0.50 / 100);
+    const inv3str2Voltage = moduleVoltage * 19 - (moduleVoltage * 19 * 0.37 / 100);
+    const inv3str3Voltage = moduleVoltage * 18 - (moduleVoltage * 18 * 0.92 / 100);
+
+    const inv4str1Voltage = moduleVoltage * 18 - (moduleVoltage * 18 * 0.78 / 100);
+    const inv4str2Voltage = moduleVoltage * 19 - (moduleVoltage * 19 * 0.72 / 100);
+    const inv4str3Voltage = moduleVoltage * 19 - (moduleVoltage * 19 * 0.90 / 100);
+
+    const inputVoltage1 = (inv1str1Voltage + inv1str2Voltage + inv1str3Voltage) / 3;
+    const inputVoltage2 = (inv2str1Voltage + inv2str2Voltage + inv2str3Voltage) / 3;
+    const inputVoltage3 = (inv3str1Voltage + inv3str2Voltage + inv3str3Voltage) / 3;
+    const inputVoltage4 = (inv4str1Voltage + inv4str2Voltage + inv4str3Voltage) / 3;
+
+    //DC i/p voltage, W = (Current per Inverter * DC input voltage) + [ ((Current per Inverter * DC input voltage) * (Temp Coeff/100)) * (T-Tref)]
+
+    const inputPower1 = inputCurrent * inputVoltage1
+        + (inputCurrent * inputVoltage1 * -0.37 / 100 * (weatherValues[2] - 25));
+    const inputPower2 = inputCurrent * inputVoltage2
+        + (inputCurrent * inputVoltage2 * -0.37 / 100 * (weatherValues[2] - 25));
+    const inputPower3 = inputCurrent * inputVoltage3
+        + (inputCurrent * inputVoltage3 * -0.37 / 100 * (weatherValues[2] - 25));
+    const inputPower4 = inputCurrent * inputVoltage4
+        + (inputCurrent * inputVoltage4 * -0.37 / 100 * (weatherValues[2] - 25));
+
+    var ACOutputPower = calculateACOutputPower([inputPower1, inputPower2, inputPower3, inputPower4]);
+
+    console.log(ACOutputPower);
+
+    // these values must be displayed as output
+    return [inputPower1, inputPower2, inputPower3, inputPower4, ACOutputPower];
+}
+
+function calculateACOutputPower(ACInputValues) {
+    // AC o/p Power = DC i/p voltage * 98.5/100
+    const ACOutputPower1 = ACInputValues[0] * 0.985;
+    const ACOutputPower2 = ACInputValues[1] * 0.985;
+    const ACOutputPower3 = ACInputValues[2] * 0.985;
+    const ACOutputPower4 = ACInputValues[3] * 0.985;
+
+    return [ACOutputPower1, ACOutputPower2, ACOutputPower3, ACOutputPower4];
+}

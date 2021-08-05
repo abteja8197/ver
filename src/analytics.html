@@ -1,0 +1,197 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        if (sessionStorage.getItem("user_dismiss") == null) {
+            sessionStorage.setItem("user_dismiss", 0);
+        }
+        if (sessionStorage.getItem("user_complete") == null) {
+            sessionStorage.setItem("user_complete", 0);
+        }
+        $(document).ready(function () {
+            var user_complete = sessionStorage.getItem("user_complete");
+            var user_dismiss = sessionStorage.getItem("user_dismiss");
+            //   function Open() {
+            //     if ("#sg-popup".length) {
+            //       $("#sg-popup").css("display", "none");
+            //       sessionStorage.setItem("user_complete", 1);
+            //     }
+            //   }
+            if (user_dismiss == "0" && user_complete == "0") {
+                var sg_div = document.createElement("div");
+                sg_div.innerHTML =
+                    `<h1>Please help us provide a <br /> better website experience.</h1><p></p><div><a id="ijs_open" onclick="function() {$("#sg-popup").css("display", "none");sessionStorage.setItem("user_complete", 1);}" class="btn11" data-fancybox="" data-type="iframe"  href="https://survey.alchemer.com/s3/6122326/Website-Intercept">Start Survey</a> </div> <button id="ijs_close">No, thank you</button>`;
+                sg_div.id = "sg-popup";
+                if (!$("#sg-popup").length) {
+                    document.body.append(sg_div);
+                }
+            }
+            $("#ijs_close").on("click", function () {
+                $("#sg-popup").css("display", "none");
+                sessionStorage.setItem("user_dismiss", 1);
+                console.log("test2" + user_dismiss);
+            });
+        });
+    })(jQuery);
+</script>
+<style>
+    #sg-popup {
+        text-align: center;
+        box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+        color: #030303;
+        z-index: 999;
+        position: fixed;
+        max-width: 90%;
+        width: auto;
+        right: 25px;
+        top: 7.2rem;
+        background-color: rgb(255, 255, 255);
+        border-color: #fff;
+        border-style: solid;
+        padding: 3.2rem 2.4rem;
+        font-size: 16px;
+    }
+
+    #ijs_open {
+        background: #2eb3b7;
+        color: #fff;
+        border-radius: 0;
+        font-size: 16px;
+        padding: 7px 7px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        float: left;
+        white-space: nowrap;
+    }
+
+    #ijs_close {
+        background: #e6e6e6;
+        color: #000;
+        border-radius: 0;
+        font-size: 16px;
+        padding: 7px 7px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        float: right;
+        white-space: nowrap;
+    }
+
+    #sg-popup h1 {
+        font-size: 2rem;
+        line-height: 1.25;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+    }
+
+    .fancybox-slide--iframe .fancybox-content,
+    .fancybox-slide--map .fancybox-content,
+    .fancybox-slide--pdf .fancybox-content,
+    .fancybox-slide--video .fancybox-content {
+        width: 70% !important;
+    }
+
+    .fancybox-slide--iframe .fancybox-content {
+        background: transparent !important;
+    }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        if (sessionStorage.getItem("user_dismiss") == null) {
+            sessionStorage.setItem("user_dismiss", 0);
+        }
+        if (sessionStorage.getItem("user_complete") == null) {
+            sessionStorage.setItem("user_complete", 0);
+        }
+        $(document).ready(function () {
+            var user_complete = sessionStorage.getItem("user_complete");
+            var user_dismiss = sessionStorage.getItem("user_dismiss");
+
+            function openModal() {
+                if ("#sg-popup".length) {
+                    $("#sg-popup").css("display", "none");
+                    sessionStorage.setItem("user_complete", 1);
+                }
+            }
+            if (user_dismiss == "0" && user_complete == "0") {
+                var sg_div = document.createElement("div");
+                sg_div.innerHTML =
+                    `<h1>Please help us provide a <br /> better website experience.</h1>
+                        <div>
+                            <a id="ijs_open" onclick="$(this).openModal();" class="btn11" data-fancybox="" data-type="iframe"  href="https://survey.alchemer.com/s3/6122326/Website-Intercept">Start Survey</a>
+                        </div>
+                    <button id="ijs_close">No, thank you</button>`;
+                sg_div.id = "sg-popup";
+                if (!$("#sg-popup").length) {
+                    document.body.append(sg_div);
+                }
+            }
+            $("#ijs_close").on("click", function () {
+                $("#sg-popup").css("display", "none");
+                sessionStorage.setItem("user_dismiss", 1);
+                console.log("test2" + user_dismiss);
+            });
+        });
+    })(jQuery);
+</script>
+<style>
+    #sg-popup {
+        text-align: center;
+        box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+        color: #030303;
+        z-index: 999;
+        position: fixed;
+        max-width: 90%;
+        width: auto;
+        right: 25px;
+        top: 7.2rem;
+        background-color: rgb(255, 255, 255);
+        border-color: #fff;
+        border-style: solid;
+        padding: 3.2rem 2.4rem;
+        font-size: 16px;
+    }
+
+    #ijs_open {
+        background: #2eb3b7;
+        color: #fff;
+        border-radius: 0;
+        font-size: 16px;
+        padding: 7px 7px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        float: left;
+        white-space: nowrap;
+    }
+
+    #ijs_close {
+        background: #e6e6e6;
+        color: #000;
+        border-radius: 0;
+        font-size: 16px;
+        padding: 7px 7px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        float: right;
+        white-space: nowrap;
+    }
+
+    #sg-popup h1 {
+        font-size: 2rem;
+        line-height: 1.25;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+    }
+
+    .fancybox-slide--iframe .fancybox-content,
+    .fancybox-slide--map .fancybox-content,
+    .fancybox-slide--pdf .fancybox-content,
+    .fancybox-slide--video .fancybox-content {
+        width: 70% !important;
+    }
+
+    .fancybox-slide--iframe .fancybox-content {
+        background: transparent !important;
+    }
+</style>

@@ -1,0 +1,22 @@
+form.webform-submission-form fieldset {
+  width: 100%;
+  margin: 0 auto;
+}
+
+form.webform-submission-form div.form-item {
+  width: 100%;
+  margin: 0 auto;
+}
+
+form.webform-submission-form div.form-item :is(input[type="radio"]) {
+  margin-bottom: 0;
+}
+
+form.webform-submission-form div.form-type-radio {
+  margin-bottom: 0.5rem;
+}
+
+form.webform-submission-form div.form-actions {
+  padding: 0;
+}
+/*# sourceMappingURL=forms3.css.map */

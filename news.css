@@ -1,0 +1,473 @@
+/* News Block Styling Starts Here written by BTA*/
+.news {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0 0 80px 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .news {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+.news-block1 {
+    width: 49%;
+    background: #FAFAFA;
+}
+
+@media screen and (max-width: 1024px) {
+    .news-block1 {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
+
+.news-block1 .banner-img {
+    width: 100%;
+}
+
+.news-block1 .news-content {
+    padding: 3.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .news-block1 .news-content {
+        text-align: left;
+        padding: 3.5rem 2.5rem;
+    }
+}
+
+.news-block1 .news-content .category {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.13em;
+    text-align: left;
+    text-transform: uppercase;
+    color: #4D4D4F;
+    margin-bottom: 2rem;
+}
+
+.news-block1 .news-content .title {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 2rem;
+}
+
+.news-block1 .news-content .description {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 2rem;
+}
+
+.news-block1 .news-content hr.separator {
+    margin-bottom: 2rem;
+}
+
+.news-block2 {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media screen and (max-width: 1024px) {
+    .news-block2 {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: left;
+    }
+}
+
+.news-block2 .news-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 0.625rem;
+    background: #FAFAFA;
+}
+
+.news-block2 article:not(:last-of-type) .news-container {
+    margin-bottom: 24px;
+}
+
+@media screen and (max-width: 480px) {
+    .news-block2 .news-container {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+}
+
+.news-block2 .news-container .news-content {
+    padding: 2.5rem;
+}
+
+@media screen and (max-width: 480px) {
+    .news-block2 .news-container .news-content {
+        padding: 2.5rem;
+    }
+}
+
+.news-block2 .news-container .news-content .category {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0.13em;
+    text-align: left;
+    color: #4D4D4F;
+    margin-bottom: 1rem;
+}
+
+.news-block2 .news-container .news-content .title {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 1rem;
+}
+
+.news-block2 .news-container .news-content hr.separator {
+    margin-bottom: 1rem;
+}
+
+.button {
+    text-decoration: none;
+}
+
+.button-secondary {
+    color: #686868;
+    background-color: #fff;
+    display: inline-block;
+    border-style: solid;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 1rem 2rem;
+    border: 1px solid #51B5DF;
+}
+
+@media screen and (max-width: 480px) {
+    .button {
+        width: 100%;
+    }
+}
+
+.button-link {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #0078AB;
+}
+
+.button-arrow {
+    margin-left: 8px;
+}
+
+hr.separator {
+    height: 4px;
+    width: 40px;
+    background: #51B5DF;
+    display: inline-block;
+}
+
+@media screen and (max-width: 480px) {
+    .news hr.separator {
+        display: none;
+    }
+}
+
+/* News Block Styling Ends Here written by BTA */
+
+/* Verathon Solution Styling Starts Here written by RS */
+.coh-style-verathon-solutions-wrap {
+    overflow: hidden;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    position: relative;
+    max-width: 82rem;
+}
+
+.coh-style-verathon-solutions-wrap .verathon-solutions-heading {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: left;
+    line-height: 21.92px;
+    color: black;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.coh-style-solution-block-wrap {
+    position: relative;
+}
+
+.coh-style-verathon-solutions-wrap .coh-style-verathon-solutions-wrap {
+    display: flex;
+}
+
+.coh-style-solution-block-wrap .coh-style-solution-block {
+    margin-top: 20px;
+    margin-right: 27px;
+    background: #FAFAFA;
+    cursor: pointer;
+}
+
+.coh-style-solution-block-wrap .coh-style-solution-block:last-child {
+    margin-right: 0;
+}
+
+.coh-style-solution-block .solution-block-heading {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: left;
+    line-height: 21.92px;
+    color: black;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    margin-left: 40px;
+    margin-top: 31px;
+    position: relative;
+}
+
+.coh-style-solution-block .solution-block-heading:after {
+    content: url(/sites/default/files/2021-05/arrow_0.png);
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: -1px;
+    right: 28px;
+}
+
+.solutions-feature-wrap .solution-bread-crumbs {
+    margin-bottom: 0;
+}
+
+.solutions-feature-wrap .solution-bread-crumbs li {
+    display: inline-block;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 0;
+    margin-left: 21px;
+}
+
+.solutions-feature-wrap .solution-bread-crumbs li span:after {
+    margin-left: 21px;
+}
+
+.solutions-feature-wrap .solution-bread-crumbs li:first-child {
+    margin-left: 0;
+    cursor: pointer;
+}
+
+.solutions-feature-wrap .solution-bread-crumbs li:first-child span:before {
+    position: relative;
+    top: 2px;
+}
+
+.solutions-feature-wrap .coh-style-solution-feature-block-wrap {
+    margin-top: 24px;
+    display: flex;
+}
+
+.coh-style-solution-feature-block-wrap .coh-style-solution-feature-block {
+    margin-top: 0;
+    margin-left: 24px;
+    flex: 1;
+}
+
+.coh-style-solution-feature-block-wrap .coh-style-solution-feature-block:first-child {
+    margin-left: 0;
+}
+
+.coh-style-solution-feature-block .solution-feature-block-image {
+    margin-bottom: 26px;
+    height: 238px;
+}
+
+.coh-style-solution-feature-block .solution-feature-block-image img {
+    max-height: 100%;
+    width: auto;
+}
+
+.coh-style-solution-feature-block .solution-feature-block-heading {
+    padding-left: 26px;
+    padding-right: 26px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.13em;
+    margin-bottom: 24px;
+    color: black;
+}
+
+.coh-style-solution-feature-block .solution-feature-block-para {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4D4D4F;
+    padding-left: 26px;
+    padding-right: 26px;
+}
+
+.coh-style-solution-feature-block .coh-link {
+    padding-bottom: 26px;
+    padding-left: 26px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #0078AB;
+    position: relative;
+    margin-top: 26px;
+}
+
+.coh-style-solution-feature-block .coh-link:after {
+    content: url(/sites/default/files/2021-05/arrow_0.png);
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: -1px;
+    right: -30px;
+}
+
+.coh-style-solution-feature-container {
+    top: 32px;
+}
+
+@media screen and (max-width: 1440px) {
+    .coh-style-verathon-solutions-wrap {
+        max-width: none;
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+
+    .coh-style-solution-feature-block .solution-feature-block-image {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 1170px) {
+    .coh-style-verathon-solutions-wrap {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    .coh-style-solution-block-wrap .coh-style-solution-block {
+        margin-right: 15px;
+    }
+
+    .coh-style-solution-feature-block-wrap .coh-style-solution-feature-block {
+        margin-left: 15px;
+    }
+
+    .coh-style-solution-feature-block .solution-feature-block-heading {
+        padding-left: 16px;
+        padding-right: 16px;
+        letter-spacing: normal;
+    }
+
+    .coh-style-solution-feature-block .solution-feature-block-para {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .coh-style-solution-feature-block .coh-link {
+        padding-left: 16px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .coh-style-solution-block .solution-block-heading {
+        margin-left: 10px;
+    }
+
+    .coh-style-solution-block .solution-block-heading:after {
+        right: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .coh-style-verathon-solutions-wrap {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .coh-style-solution-block-wrap .coh-style-solution-block {
+        margin-right: 0;
+        margin-top: 24px;
+    }
+
+    .coh-style-solution-block-wrap {
+        flex-direction: column;
+    }
+
+    .coh-style-solution-block .solution-block-heading {
+        margin-left: 40px;
+    }
+
+    .coh-style-solution-block .solution-block-heading:after {
+        right: 40px;
+    }
+
+    .solutions-feature-wrap .coh-style-solution-feature-block-wrap {
+        flex-direction: column;
+    }
+
+    .coh-style-solution-feature-block-wrap .coh-style-solution-feature-block {
+        margin-left: 0;
+    }
+}
+
+/* Verathon Solution Styling Ends Here written by RS */

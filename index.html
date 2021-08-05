@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Verathon</title>
+
+    <!-- Styles  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/search.css">
+
+    <!-- Scripts -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="./src/index.js"></script>
+    <!-- <script src="./src/search.js"></script> -->
+</head>
+
+<body>
+    <div class="container form">
+        <iframe src="iframe.html" width="100%" id="Iframe" type="text/html" frameborder="0" allowtransparency="true"
+            style="border: 0"></iframe>
+    </div>
+    <div class="container m-5">
+        <form action="">
+            <textarea name="abcd" id="textarea" cols="75" rows="5"></textarea>
+        </form>
+        <button id="modifyInput">clear error</button>
+    </div>
+    <div class="main">
+        <div class="container mt-5 mb-5 search">
+            <!-- <form onsubmit="formSubmitted()"> -->
+            <div class="form-field">
+                <div class="chips">
+                </div>
+                <input placeholder="Search..." class="chip-input" autocomplete="off" autofocus />
+            </div>
+            <!-- </form> -->
+        </div>
+        <div class="banner container">
+            <div>
+                <h6 class="title">Education &amp; Training</h6>
+                <p class="description">Facilisi luctus urna sit vestibulum dignissim</p>
+            </div>
+            <div class="search-filter">
+                <p class="search-filter-description">Search for devices by Role, Department, or Product line</p>
+                <div class="search-box">
+                    <select name="Products" id="Products" placeholder="All Products">
+                        <option value="Product1">Product1</option>
+                        <option value="Product2">Product2</option>
+                    </select>
+                    <input type="text" name="Search" id="">
+                    <a href="#" class="button button-primary">LEARN MORE</a>
+                </div>
+            </div>
+        </div>
+        <div class="product-family container">
+            <div class="product">
+                <div class="product-block1">
+                    <p class="title">The All New BladderScan i10</p>
+                    <p class="description">The Next Generation of Bladder Volume Measurement</p>
+                    <a href="#" class="button button-primary">LEARN MORE</a>
+                </div>
+                <div class="product-block2">
+                    <img class="image" src="./images/col.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-products container">
+            <div class="products-container">
+                <div class="product">
+                    <div class="product-block1">
+                        <img class="image" src="./images/product1-progressive.jpeg" alt="">
+                    </div>
+                    <div class="product-block2">
+                        <p class="title">ImageSense</p>
+                        <p class="description">Quam lacus, tellus sit cursus scelerisque</p>
+                        <a href="#" class="button button-secondary">LEARN MORE</a>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="product-block1">
+                        <img class="image" src="./images/product2-progressive.jpeg" alt="">
+                    </div>
+                    <div class="product-block2">
+                        <p class="title">GlideScope Spectrum</p>
+                        <p class="description">Diam diam ornare at et, vitae</p>
+                        <a href="#" class="button button-secondary">LEARN MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Container -->
+        <div class="news container">
+            <div class="news-block1">
+                <div class="news-banner">
+                    <img src="./images/news1-progressive.jpeg" class="banner-img" alt="news banner">
+                </div>
+                <div class="news-content">
+                    <p class="category">RESEARCH</p>
+                    <hr class="separator">
+                    <p class="title">Nam suscipit ex eu nisi eleifend volutpat.</p>
+                    <p class="description">At magnum periculum adiit in quo enim ad respondendum reddidisti quorum facta
+                        quem modo dixi, constituto, ut ita ruant itaque earum rerum necessitatibus saepe eveniet</p>
+                    <a href="#" class="button button-link">Read More <img src="./images/arrow.svg" alt="arrow"
+                            class="button-arrow"></a>
+                </div>
+            </div>
+            <div class="news-block2">
+                <div class="news-container">
+                    <div class="news-banner">
+                        <img class="banner-img" src="./images/news2-progressive.jpeg" alt="">
+                    </div>
+                    <div class="news-content">
+                        <p class="category">PUBLICATION</p>
+                        <hr class="separator">
+                        <p class="title">Nam suscipit ex eu nisi eleifend volut.</p>
+                        <a href="#" class="button button-link">Read More <img src="./images/arrow.svg" alt="arrow"
+                                class="button-arrow"></a>
+                    </div>
+                </div>
+                <div class="news-container">
+                    <div class="news-banner">
+                        <img class="image" src="./images/news3-progressive.jpeg" alt="">
+                    </div>
+                    <div class="news-content">
+                        <p class="category">NEWS</p>
+                        <hr class="separator">
+                        <p class="title">Nam suscipit ex eu nisi eleifend volut.</p>
+                        <a href="#" class="button button-link">Read More <img src="./images/arrow.svg" alt="arrow"
+                                class="button-arrow"></a>
+                    </div>
+                </div>
+                <div class="news-container">
+                    <div class="news-banner">
+                        <img class="image" src="./images/news4-progressive.jpeg" alt="">
+                    </div>
+                    <div class="news-content">
+                        <p class="category">NEWS</p>
+                        <hr class="separator">
+                        <p class="title">Nam suscipit ex eu nisi eleifend volut.</p>
+                        <a href="#" class="button button-link">Read More <img src="./images/arrow.svg" alt="arrow"
+                                class="button-arrow"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- News Container Ends -->
+
+
+        <!-- Floating Contact Widget -->
+        <div class="floating-widget">
+            <div class="contact-widget contact-widget--collapsed">
+                <div class="img">
+                    <img src="./images/floater.svg" alt="Floater is collapsed now">
+                </div>
+                <p class="contact-widget-text">I'd Like To</p>
+            </div>
+            <div class="contact-widget contact-widget--expanded d-none">
+                <div class="img">
+                    <img src="./images/floater-expanded.svg" alt="Floater is collapsed now">
+                </div>
+                <div class="contact-widget-link-container">
+                    <a class="contact-widget-link" href="#">CONTACT SALES</a>
+                    <a class="contact-widget-link" href="#">CONTACT SUPPORT</a>
+                    <a class="contact-widget-link" href="#">REQUEST A DEMO</a>
+                    <a class="contact-widget-link" href="#">PROVIDE FEEDBACK</a>
+                </div>
+            </div>
+        </div>
+        <!-- Floating Contact Widget Ends -->
+
+
+        <!-- Category Benefit Block -->
+        <div class="category-benefit-container">
+            <div class="category-benefit-banner">
+                <img src="./images/image-wrapper-progressive.jpeg" alt="banner image" class="banner-img">
+            </div>
+            <div class="category-benefit-content">
+                <div>
+                    <p class="tagline">ImageSense</p>
+                    <p class="header">Artificial Intelligence</p>
+                    <p class="description">Aliquam tempor tempor ex ac blandit. Maecenas pharetra, nunc at dignissim
+                        mollis,
+                        arcu purus laoreet dui, in dignissim tortor</p>
+                    <div class="benefit-statistics">
+                        <div class="stats">
+                            <p class="percentage">12</p>
+                            <p class="benefit-text">Improves aliquam</p>
+                        </div>
+                        <div class="stats">
+                            <p class="percentage rotate-down">32</p>
+                            <p class="benefit-text">Improves aliquam</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a href="#" class="button button-link">Learn About ImageSense<img src="./images/arrow.svg"
+                            alt="arrow" class="button-arrow"></a>
+                </div>
+            </div>
+        </div>
+        <div class="category-benefit-container content-first">
+            <div class="category-benefit-banner">
+                <img src="./images/image-wrapper-progressive.jpeg" alt="banner image" class="banner-img">
+            </div>
+            <div class="category-benefit-content">
+                <div>
+                    <p class="tagline">ImageSense</p>
+                    <p class="header">Artificial Intelligence</p>
+                    <p class="description">Aliquam tempor tempor ex ac blandit. Maecenas pharetra, nunc at dignissim
+                        mollis,
+                        arcu purus laoreet dui, in dignissim tortor</p>
+                    <div class="benefit-statistics">
+                        <div class="stats">
+                            <p class="percentage">12</p>
+                            <p class="benefit-text">Improves aliquam</p>
+                        </div>
+                        <div class="stats">
+                            <p class="percentage rotate-down">32</p>
+                            <p class="benefit-text">Improves aliquam</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a href="#" class="button button-link">Learn About ImageSense<img src="./images/arrow.svg"
+                            alt="arrow" class="button-arrow"></a>
+                </div>
+            </div>
+
+        </div>
+        <!-- Category Benefit Block Ends -->
+
+        <!-- Category Feature Block -->
+        <div class="category-feature-block">
+            <div class="category-feature-container">
+                <p class="category-feature-header">A New Class of Clarity</p>
+                <div class="category-feature-list">
+                    <div class="category-feature-item active">
+                        <p class="category-feature-title">
+                            Feature One
+                        </p>
+                        <p class="category-feature-description">
+                            Aenean volutpat, leo eu tincidunt fringilla, turpis erat mattis ligula, sed blandit ipsum
+                            augue eget nisi.
+                        </p>
+                    </div>
+                    <div class="category-feature-item">
+                        <p class="category-feature-title">
+                            Feature One
+                        </p>
+                        <p class="category-feature-description">
+                            Aenean volutpat, leo eu tincidunt fringilla, turpis erat mattis ligula, sed blandit ipsum
+                            augue eget nisi.
+                        </p>
+                    </div>
+                    <div class="category-feature-item">
+                        <p class="category-feature-title">
+                            Feature One
+                        </p>
+                        <p class="category-feature-description">
+                            Aenean volutpat, leo eu tincidunt fringilla, turpis erat mattis ligula, sed blandit ipsum
+                            augue eget nisi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="category-feature-image">
+                <img src="./images/news1-progressive.jpeg" alt="Feature">
+            </div>
+        </div>
+        <!-- Category Feature Block Ends -->
+
+        <!-- Category Accessory Block -->
+        <div class="category-accessory-container">
+            <div class="category-accessory-banner">
+                <img src="./images/image-wrapper-progressive.jpeg" alt="banner image" class="banner-img">
+            </div>
+            <div class="category-accessory-content">
+                <div>
+                    <p class="tagline">Accessories</p>
+                    <p class="header">GlideRite Stylets</p>
+                    <p class="description">AAliquam tempor tempor ex ac blandit. Maecenas pharetra, nunc at dignissim
+                        mollis, arcu purus laoreet dui, in dignissim tortor</p>
+                </div>
+                <div>
+                    <a href="#" class="button button-link">Learn About GlideRite Stylets<img src="./images/arrow.svg"
+                            alt="arrow" class="button-arrow"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Accessory Block Ends-->
+
+    </div>
+    <script>
+        var frame = document.getElementById("Iframe");
+        frame.onload = function () {
+            frame.style.height =
+                frame.contentWindow.document.body.scrollHeight + 40 + 'px';
+            frame.style.width =
+                frame.contentWindow.document.body.scrollWidth + 'px';
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+/* Floating Widget Styling Starts Here written by SSGP */
+.floating-widget {
+    position: fixed;
+    bottom: 5%;
+    right: 0px;
+    z-index: 1;
+}
+
+.floating-widget .contact-widget {
+    position: relative;
+    background: #EEEEEE;
+    padding: 1.4375rem 4rem;
+}
+
+@media screen and (min-width: 834px) and (max-width: 1024) {
+    padding: 1.4375rem 2rem;
+}
+
+@media screen and (max-width: 834px) {
+    .floating-widget .contact-widget {
+        padding: 0;
+    }
+}
+
+.floating-widget .contact-widget .img {
+    position: absolute;
+    left: 0;
+    height: 4.5rem;
+    width: 4.5rem;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 834px) {
+    .floating-widget .contact-widget .img {
+        position: fixed;
+        left: unset;
+        right: 0;
+        top: unset;
+        height: 3.5rem;
+        width: 3.5rem;
+        bottom: 25px;
+    }
+}
+
+.floating-widget .contact-widget--expanded .img {
+    background: #868686;
+}
+
+.floating-widget .contact-widget--collapsed .img {
+    background: #fff;
+}
+
+.floating-widget .contact-widget-text,
+.floating-widget .contact-widget-link {
+    margin: 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+    color: #000000;
+    letter-spacing: 0.13em;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 834px) {
+    .floating-widget .contact-widget-text {
+        display: none;
+    }
+}
+
+.floating-widget .contact-widget-link {
+    margin-left: 10px;
+    width: 210px;
+}
+
+@media screen and (max-width: 834px) {
+    .floating-widget .contact-widget-link {
+        width: 100%;
+        padding: 20px;
+        text-align: right;
+    }
+}
+
+.floating-widget .contact-widget-link-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 834px) {
+    .floating-widget .contact-widget-link-container {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-bottom: 30%;
+        margin-right: 10px;
+    }
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* Floating Widget Styling Ends Here written by SSGP */
+
+/* Social Icons Styling Starts Here written by SSGP */
+.footer-icons {
+    display: flex;
+}
+
+.footer-icons a {
+    margin: 0 13px;
+}
+
+/* Social Icons Styling Ends Here written by SSGP */

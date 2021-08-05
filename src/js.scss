@@ -1,0 +1,47 @@
+button {
+    height: 50px;
+    width: 120px;
+    background: #0071C7;
+    color: white;
+}
+
+.d-none {
+    display: none;
+}
+
+.parent-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 60%;
+}
+
+.container {
+    width: 636px;
+    height: 400px;
+    border: 1px solid #0071C7;
+    position: absolute;
+    right: 0;
+    top: 100%;
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-basis: 50%;
+        }
+
+        &--heading {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        &--description {
+            font-weight: normal;
+            font-size: 16px;
+        }
+    }
+}

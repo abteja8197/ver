@@ -1,0 +1,64 @@
+DC CONDUCTORS
+•	There are 4 inverters, and each inverter has 3 strings.
+•	Further we have Quantity of Modules for each string.
+•	Each of the two solar panels are connected to one optimizer, hence,
+Optimizer Quantity = Module Quantity/2
+(Each module has 2 solar panels)
+•	Total DC (Power), W = READ ON SITE (*Confirm with Naoki)
+•	Total DC (Power), kW = Total DC (Power), W/1000.
+•	Nominal string voltage, V = is directly taken from the datasheet of inverter. (But practically it should change) Its is a hard number= 850
+•	Current, I, Amp= calculated using i=p/v.
+ 
+VOLTAGE
+•	Opt. Operating Voltage, V = 39.8 (taken from Specsheet)
+•	Temp. Coeff = -0.29 (taken from Specsheet)
+•	Temp of Cell = 30 (taken from sensor-It varies)
+•	Ref. Temperature = 25 (taken from Specsheet)
+•	Voltage per module, V = 39.22 (which is calculated)
+Const Module Voltage (For 30 degrees = Opt. Operating Voltage (Vmp) + (Opt. Operating Voltage (Vmp) *(Temp. Coefficient (Voc), %/°C/100) *(Temp. of Cell, °C- Reference Temp., °C))
+==39.8+(39.8*(-0.29/100) *(30-25) = 39.2
+
+(Line 138 in existing code)
+
+VOLTAGE PER STRING, V (Without considering Voltage Drop)
+•	Voltage per string V (Without considering Voltage Drop) 
+= Module Qty * Voltage per module, V (39.2) / 2 
+CURRENT
+•	Irradiance = from Specsheet
+•	Operating Current= Cross multiplication
+Eg 800*9.43/1000 = to get output current at 800
+(In the code it is also multiplied by 6- Confirm with Naoki)
+(Line 137 in existing code)
+
+POWER
+•	Temp. Coefficient (Pmax), %/°C = -0.37
+•	Inverter Efficiency, % = 98.5 
+…………………………………………………………………………………………………………………………………………………………………
+•	We have Voltage Drop across each interval in the system.
+Array – TB, TB – Inverter, Inverter – Ac combiner
+In the Total Voltage drop, V, the values should be added but they are subtracted from Voltage drop of ‘Array – TB’ (Confirm with Naoki)
+
+VOLTAGE
+
+•	VD% = Total VD/ Nominal String VD * 100
+Eg, (3.59/850) *100 = 0.42
+•	Voltage per String, V (Considering Voltage Drop) = Voltage per String + Added effect of Voltage drop i.e., 
+= = Voltage per String, V – (Voltage per String, V * Voltage Drop %)
+(Voltage per string = (Module Qty/2 * Voltage per module) )
+(Line 140 in existing code)
+
+•	DC Input Voltage, V (to inverter) = Sum of three voltages per string (considering VD)/3
+•	(Line 156 in existing code)
+
+•	Pref= DC input voltage * Current per Inverter
+•	AC output Power = DC input Power * 98.5/100
+Consider efficiency from the datasheet = 98.5
+
+•	DC i/p voltage, W = Pref + [ (Pref * Temp Coeff/100) * (T-Tref)]
+(Here Temp Coeff is -0.37)
+•	(Line 161 in existing code)
+
+•	AC o/p Power = DC i/p power * 98.5/100
+(98.5 is inverter efficiency)
+
+Address for ACoutputpower for inverters

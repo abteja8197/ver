@@ -1,0 +1,35 @@
+.coh-container .no-padding {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+.coh-container .padding-sm {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.coh-container .padding-md {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.coh-container .padding-lg {
+  padding-top: 7.5rem;
+  padding-bottom: 7.5rem;
+}
+
+@media screen and (max-width: 480px) {
+  .coh-container .padding-sm {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+  .coh-container .padding-md {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .coh-container .padding-lg {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+/*# sourceMappingURL=paddingstyles.css.map */

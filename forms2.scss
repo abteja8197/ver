@@ -1,0 +1,65 @@
+form.webform-submission-form {
+    fieldset {
+        padding: 0;
+        margin: 0;
+
+        legend span {
+            display: none;
+        }
+
+        input.form-text,
+        .form-select:not(.editor) {
+            order: 2;
+        }
+
+        label {
+            order: 1;
+        }
+    }
+
+    div.form-item {
+        padding: 0;
+        margin: 0;
+
+        :is(input, select, textarea) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    div.form-actions {
+        padding: 0;
+    }
+}
+
+.ui-widget.ui-widget-content {
+    width: 100% !important;
+    max-width: 31.25rem;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: none;
+
+    .ui-dialog-buttonset {
+        float: none;
+    }
+
+    button.webform-button--submit {
+        font-size: 1rem;
+        width: auto;
+        border: none;
+        background-color: #157cd1;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        opacity: 0.8;
+        transition: opacity 300ms ease;
+
+        &:hover {
+            background-color: #157cd1;
+            opacity: 1;
+        }
+    }
+}
